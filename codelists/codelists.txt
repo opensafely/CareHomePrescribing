@@ -3,4 +3,5 @@ opensafely/selective-serotonin-reuptake-inhibitors-dmd/6a572e55
 opensafely/covid-identification/2020-06-03
 opensafely/covid-identification-in-primary-care-probable-covid-clinical-code/2020-07-16
 opensafely/covid-identification-in-primary-care-probable-covid-positive-test/2020-07-16
-opensafely/covid-identification-in-primary-care-probable-covid-sequelae/2020-07-16/
+opensafely/covid-identification-in-primary-care-probable-covid-sequelae/2020-07-16
+opensafely/structured-medication-review-nhs-england/5459205f

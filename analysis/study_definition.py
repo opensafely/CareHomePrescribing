@@ -180,6 +180,24 @@ study = StudyDefinition(
             },
         },
     ),
+    
+        ## middle layer super output area (msoa) - nhs administrative region 
+    msoa=patients.registered_practice_as_of(
+        "index_date",
+        returning="msoa_code",
+        return_expectations={
+            "rate": "universal",
+            "category": {"ratios": {"E02000001": 0.5, "E02000002": 0.5}},
+        },
+    ),
+    
+        ## structured medicine review
+    smr=patients.with_these_clinical_events(
+        structured_medicine_review,
+        on_or_before="index_date",
+        return_first_date_in_period=True,
+        include_month=True,
+    ),
     )
     
     
