@@ -26,7 +26,7 @@ for file in os.listdir('output'):
 
 df_input.describe().to_csv('output/Descriptive_Statistics.csv')
 
-
+"""
 df_all = pd.read_csv("output/measure_prescribing_rate_all.csv")
 df_region = pd.read_csv("output/measure_prescribing_rate_region.csv")
 df_age = pd.read_csv("output/measure_prescribing_rate_age.csv")
@@ -68,3 +68,4 @@ fig3 = px.line(df_all, x='date', y='value',
               line_group="care_home_type", hover_name="care_home_type")
 fig3.update_layout(title='Antidepressent Prescribing, Care Home Type' , showlegend=True)
 fig3.write_html("output/carehome.html")
+"""
