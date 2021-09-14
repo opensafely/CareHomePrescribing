@@ -1,3 +1,4 @@
+import csv
 import pandas as pd
 import os
 import plotly.graph_objs as go
@@ -13,6 +14,17 @@ import plotly.express as px
 # fig=df2.plot.pie(y='age_band', figsize=(10,10), autopct='%1.1f%%').get_figure()
 
 # fig.savefig("output/descriptive_*.png")
+
+
+
+for file in os.listdir('output'):    
+    if file.startswith('input_2019-11'):
+        file_path = os.path.join('output/', file)
+        df_input = pd.read_csv(file_path)
+
+
+
+df_input.describe().to_csv('output/Descriptive_Statistics.csv')
 
 
 df_all = pd.read_csv("output/measure_prescribing_rate_all.csv")
@@ -35,8 +47,6 @@ df_region_CH = df_region[df_region['care_home_type']=='PN']
 df_age_nonCH = df_age[df_age['care_home_type']=='PR']
 df_age_CH = df_age[df_age['care_home_type']=='PN']
 
-
-print(df_age_nonCH)
 
 # Plotly figure 1
 fig = px.line(df_region_CH, x='date', y='value',
