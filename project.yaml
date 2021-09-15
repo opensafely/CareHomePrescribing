@@ -40,5 +40,5 @@ actions:
     needs: [generate_study_population, generate_measures]
     outputs:
       moderately_sensitive:
-#        cohort: output/*.html
+        cohort: output/*.html
         tables: output/*.csv
