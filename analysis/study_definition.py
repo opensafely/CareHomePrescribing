@@ -94,7 +94,7 @@ study = StudyDefinition(
       return_expectations = {"incidence": 0.2}
     ),    
     
-    
+   
     
         # DEMOGRAPHICS  
     ## age 
