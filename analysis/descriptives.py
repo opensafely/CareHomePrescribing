@@ -28,7 +28,9 @@ df_input.describe().to_csv('output/Descriptive_Statistics.csv')
 
 
 df_all = pd.read_csv("output/measure_prescribing_rate_all.csv")
+
 df_region = pd.read_csv("output/measure_prescribing_rate_region.csv")
+
 df_age = pd.read_csv("output/measure_prescribing_rate_age.csv")
 
 
@@ -47,6 +49,7 @@ df_region_CH = df_region[df_region['care_home_type']=='PN']
 df_age_nonCH = df_age[df_age['care_home_type']=='PR']
 df_age_CH = df_age[df_age['care_home_type']=='PN']
 
+df_region_CH.to_csv('output/df_region_CH.csv')
 
 # Plotly figure 1
 fig = px.line(df_region_CH, x='date', y='value',
