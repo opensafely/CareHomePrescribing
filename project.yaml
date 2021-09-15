@@ -13,7 +13,7 @@ actions:
 
 
   generate_study_population_ethnicity:
-    run: cohortextractor:latest generate_cohort --index-date-range "2019-09-01 to 2020-09-01 by month" --study-definition study_definition_ethnicity --output-dir=output
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output
     outputs:
       highly_sensitive:     
         cohort: output/input_ethnicity.csv
