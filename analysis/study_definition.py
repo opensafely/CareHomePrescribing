@@ -90,7 +90,7 @@ study = StudyDefinition(
     antidepressent_ssri = patients.with_these_medications(
       antidepressent_ssri_codes,
       returning = "binary_flag",
-      between = ["index_date", "index_date - 3 months"],
+      between = ["index_date - 3 months", "index_date"],
       return_expectations = {"incidence": 0.2}
     ),    
     
