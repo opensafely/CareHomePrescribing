@@ -27,11 +27,11 @@ for file in os.listdir('output'):
 df_input.describe().to_csv('output/Descriptive_Statistics.csv')
 
 
-df_all = pd.read_csv("output/measure_prescribing_rate_all.csv")
+df_all = pd.read_csv("output/measure_prescribing_rate_all.csv").dropna()
 
-df_region = pd.read_csv("output/measure_prescribing_rate_region.csv")
+df_region = pd.read_csv("output/measure_prescribing_rate_region.csv").dropna()
 
-df_age = pd.read_csv("output/measure_prescribing_rate_age.csv")
+df_age = pd.read_csv("output/measure_prescribing_rate_age.csv").dropna()
 
 
 
