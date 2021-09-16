@@ -44,27 +44,24 @@ study = StudyDefinition(
     # HOUSEHOLD INFORMATION
     ## care home status 
     care_home_type=patients.care_home_status_as_of(
-        "2020-02-01",
+        "index_date",
         categorised_as={
-            "PC":
-            """
+            "PC": """
               IsPotentialCareHome
               AND LocationDoesNotRequireNursing='Y'
               AND LocationRequiresNursing='N'
             """,
-            "PN":
-            """
+            "PN": """
               IsPotentialCareHome
               AND LocationDoesNotRequireNursing='N'
               AND LocationRequiresNursing='Y'
             """,
             "PS": "IsPotentialCareHome",
-            "PR": "NOT IsPotentialCareHome",
             "U": "DEFAULT",
         },
         return_expectations={
             "rate": "universal",
-            "category": {"ratios": {"PC": 0.05, "PN": 0.05, "PS": 0.05, "PR": 0.84, "U": 0.01},},
+            "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
         },
     ),
     

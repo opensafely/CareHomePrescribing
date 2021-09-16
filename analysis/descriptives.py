@@ -40,14 +40,14 @@ df_region['date'] = pd.to_datetime(df_region['date'])
 df_age['date'] = pd.to_datetime(df_age['date'])
 
 
-df_all_nonCH = df_all[df_all['care_home_type']=='PR']
-df_all_CH = df_all[df_all['care_home_type']=='PN']
+df_all_nonCH = df_all[df_all['care_home_type']=='U']
+df_all_CH = df_all[df_all['care_home_type']!='U']
 
-df_region_nonCH = df_region[df_region['care_home_type']=='PR']
-df_region_CH = df_region[df_region['care_home_type']=='PN']
+df_region_nonCH = df_region[df_region['care_home_type']=='U']
+df_region_CH = df_region[df_region['care_home_type']!='U']
 
-df_age_nonCH = df_age[df_age['care_home_type']=='PR']
-df_age_CH = df_age[df_age['care_home_type']=='PN']
+df_age_nonCH = df_age[df_age['care_home_type']=='U']
+df_age_CH = df_age[df_age['care_home_type']!='U']
 
 df_region_CH.to_csv('output/df_region_CH.csv')
 
@@ -56,6 +56,7 @@ fig = px.line(df_region_CH, x='date', y='value',
               color="region",
               line_group="region", hover_name="region")
 fig.update_layout(title='Antidepressent Prescribing, Region' , showlegend=True)
+fig.update_yaxes(tickformat = ',.0%')
 fig.write_html("output/region.html")
 
 # Plotly figure 2
@@ -63,6 +64,7 @@ fig2 = px.line(df_age_CH, x='date', y='value',
               color="ageband_narrow",
               line_group="ageband_narrow", hover_name="ageband_narrow")
 fig2.update_layout(title='Antidepressent Prescribing, Age' , showlegend=True)
+fig2.update_yaxes(tickformat = ',.0%')
 fig2.write_html("output/age.html")
 
 # Plotly figure 3
@@ -70,4 +72,5 @@ fig3 = px.line(df_all, x='date', y='value',
               color="care_home_type",
               line_group="care_home_type", hover_name="care_home_type")
 fig3.update_layout(title='Antidepressent Prescribing, Care Home Type' , showlegend=True)
+fig3.update_yaxes(tickformat = ',.0%')
 fig3.write_html("output/carehome.html")
