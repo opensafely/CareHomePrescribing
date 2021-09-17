@@ -5,39 +5,51 @@ expectations:
 
 actions:
 
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --index-date-range "2019-09-01 to 2020-09-01 by month" --study-definition study_definition
+  generate_study_population_ad:
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-03-01 by month" --study-definition study_definition_ad
     outputs:
       highly_sensitive:
-        cohort: output/input_*.csv
+        cohort: output/input_ad_*.csv
 
+  generate_study_population_ap:
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-03-01 by month" --study-definition study_definition_ap
+    outputs:
+      highly_sensitive:
+        cohort: output/input_ap_*.csv
 
-  # generate_study_population_ethnicity:
-    # run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output
-    # outputs:
-      # highly_sensitive:     
-        # cohort: output/input_ethnicity.csv
+  generate_study_population_ethnicity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity --output-dir=output
+    outputs:
+      highly_sensitive:     
+        cohort: output/input_ethnicity.csv
         
 
-  # join_ethnicity:
-    # run: python:latest python analysis/join_ethnicity.py
-    # needs: [generate_study_population, generate_study_population_ethnicity]
-    # outputs:
-      # highly_sensitive:
-        # cohort: output/input*.csv
+  join_ethnicity:
+    run: python:latest python analysis/join_ethnicity.py
+    needs: [generate_study_population_ad, generate_study_population_ap, generate_study_population_ethnicity]
+    outputs:
+      highly_sensitive:
+        cohort: output/input*.csv
         
-          ## Generate measures
-  generate_measures:
-      run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output
-      needs: [generate_study_population]
+          # Generate measures
+  generate_measures_ad:
+      run: cohortextractor:latest generate_measures --study-definition study_definition_ad --output-dir=output
+      needs: [generate_study_population_ad]
       outputs:
         moderately_sensitive:
-          measure_csv: output/measure_*.csv
+          measure_csv: output/measure_ad_*.csv
           
+
+  generate_measures_ap:
+      run: cohortextractor:latest generate_measures --study-definition study_definition_ap --output-dir=output
+      needs: [generate_study_population_ap]
+      outputs:
+        moderately_sensitive:
+          measure_csv: output/measure_ap_*.csv
         
   describe:
     run: python:latest python analysis/descriptives.py
-    needs: [generate_study_population, generate_measures]
+    needs: [join_ethnicity, generate_measures_ad, generate_measures_ap]
     outputs:
       moderately_sensitive:
         cohort: output/*.html

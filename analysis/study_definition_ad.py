@@ -202,21 +202,21 @@ measures = [
 
     # antidepressent
     Measure(
-        id="prescribing_rate_all",
+        id="ad_prescribing_rate_all",
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["care_home_type"],
     ),
     # antidepressent age
     Measure(
-        id="prescribing_rate_age",
+        id="ad_prescribing_rate_age",
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["ageband_narrow","care_home_type"],
     ),
     # antidepressent region
     Measure(
-        id="prescribing_rate_region",
+        id="ad_prescribing_rate_region",
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["region","care_home_type"],

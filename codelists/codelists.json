@@ -41,6 +41,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/structured-medication-review-nhs-england/5459205f/",
       "downloaded_at": "2021-09-06 09:12:31.150605Z",
       "sha": "7bd4843c423ef7618c6d8f27164dc0939f2c9a9a"
+    },
+    "opensafely-second-generation-antipsychotics-excluding-long-acting-injections.csv": {
+      "id": "opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11/",
+      "downloaded_at": "2021-09-17 12:06:57.592981Z",
+      "sha": "2330a3239958a1e120352e26fa7126e71d5dfdba"
     }
   }
 }

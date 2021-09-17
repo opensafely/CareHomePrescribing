@@ -18,6 +18,12 @@ antidepressent_ssri_codes = codelist_from_csv(
   column = "dmd_id",
 )
 
+antipsychotics_sec_gen = codelist_from_csv(
+    "codelists/opensafely-second-generation-antipsychotics-excluding-long-acting-injections.csv",
+    system="snomed",
+    column="dmd_id",
+    )
+
 structured_medicine_review = codelist_from_csv(
   "codelists/opensafely-structured-medication-review-nhs-england.csv",
   system = "snomed",
