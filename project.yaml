@@ -34,7 +34,7 @@ actions:
           # Generate measures
   generate_measures_ad:
       run: cohortextractor:latest generate_measures --study-definition study_definition_ad --output-dir=output
-      needs: [generate_study_population_ad]
+      needs: [join_ethnicity]
       outputs:
         moderately_sensitive:
           measure_csv: output/measure_ad_*.csv
@@ -42,7 +42,7 @@ actions:
 
   generate_measures_ap:
       run: cohortextractor:latest generate_measures --study-definition study_definition_ap --output-dir=output
-      needs: [generate_study_population_ap]
+      needs: [join_ethnicity]
       outputs:
         moderately_sensitive:
           measure_csv: output/measure_ap_*.csv
