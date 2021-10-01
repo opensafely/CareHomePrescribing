@@ -32,7 +32,7 @@ study = StudyDefinition(
         (age >= 65 AND age < 120) AND 
         is_registered_with_tpp AND 
         (sex = "M" OR sex = "F") AND 
-        (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS" OR care_home_type = "U") 
+        (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS") 
         """,
         is_registered_with_tpp=patients.registered_as_of(
           "index_date"
@@ -91,7 +91,12 @@ study = StudyDefinition(
       return_expectations = {"incidence": 0.2}
     ),    
     
-   
+    antidepressent_ssri_previous = patients.with_these_medications(
+      antidepressent_ssri_codes,
+      returning = "binary_flag",
+      between = ["index_date - 12 months", "index_date - 3 months"],
+      return_expectations = {"incidence": 0.2}
+    ),       
     
         # DEMOGRAPHICS  
     ## age 
@@ -212,14 +217,14 @@ measures = [
         id="ad_prescribing_rate_age",
         numerator="antidepressent_ssri",
         denominator="population",
-        group_by = ["ageband_narrow","care_home_type"],
+        group_by = ["ageband_narrow"],
     ),
     # antidepressent region
     Measure(
         id="ad_prescribing_rate_region",
         numerator="antidepressent_ssri",
         denominator="population",
-        group_by = ["region","care_home_type"],
+        group_by = ["region"],
     )
     
     ]
