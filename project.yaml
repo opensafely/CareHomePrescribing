@@ -6,7 +6,7 @@ expectations:
 actions:
 
   generate_study_population_ad:
-    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-03-01 by month" --study-definition study_definition_ad
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-32-01 to 2021-03-01 by month" --study-definition study_definition_ad
     outputs:
       highly_sensitive:
         cohort: output/input_ad_*.csv
@@ -22,7 +22,6 @@ actions:
     outputs:
       highly_sensitive:     
         cohort: output/input_ethnicity.csv
-        
 
   join_ethnicity:
     run: python:latest python analysis/join_ethnicity.py
@@ -34,7 +33,7 @@ actions:
           # Generate measures
   generate_measures_ad:
       run: cohortextractor:latest generate_measures --study-definition study_definition_ad --output-dir=output
-      needs: [generate_study_population_ad, join_ethnicity]
+      needs: [join_ethnicity]
       outputs:
         moderately_sensitive:
           measure_csv: output/measure_ad_*.csv
@@ -42,14 +41,14 @@ actions:
 
   generate_measures_ap:
       run: cohortextractor:latest generate_measures --study-definition study_definition_ap --output-dir=output
-      needs: [generate_study_population_ap, join_ethnicity]
+      needs: [join_ethnicity]
       outputs:
         moderately_sensitive:
           measure_csv: output/measure_ap_*.csv
         
   describe:
     run: python:latest python analysis/descriptives.py
-    needs: [join_ethnicity, generate_measures_ad, generate_measures_ap]
+    needs: [generate_measures_ad, generate_measures_ap]
     outputs:
       moderately_sensitive:
         cohort: output/*.html
