@@ -29,8 +29,8 @@ for file in file_list:
         df_input = pd.read_csv(file)
         file_dict[key] = df_input
 
-for key in file_dict.keys():
-    file_dict[key].describe().to_csv('output/Descriptive_Statistics_'+str(key.split('/')[1])+'.csv')
+#for key in file_dict.keys():
+#    file_dict[key].describe().to_csv('output/descriptives/descriptive_statistics_'+str(key.split('/')[1])+'.csv')
 
 #df_input.describe().to_csv('output/Descriptive_Statistics.csv')
 
@@ -42,15 +42,27 @@ df_region_ad = pd.read_csv("output/measure_ad_prescribing_rate_region.csv").drop
 df_age_ap = pd.read_csv("output/measure_ap_prescribing_rate_age.csv").dropna()
 df_age_ad = pd.read_csv("output/measure_ad_prescribing_rate_age.csv").dropna()
 
+df_all_ap_new = pd.read_csv("output/measure_ap_prescribing_new_all.csv").dropna()
+df_all_ad_new = pd.read_csv("output/measure_ad_prescribing_new_all.csv").dropna()
+df_region_ap_new = pd.read_csv("output/measure_ap_prescribing_new_region.csv").dropna()
+df_region_ad_new = pd.read_csv("output/measure_ad_prescribing_new_region.csv").dropna()
+df_age_ap_new = pd.read_csv("output/measure_ap_prescribing_new_age.csv").dropna()
+df_age_ad_new = pd.read_csv("output/measure_ad_prescribing_new_age.csv").dropna()
+
 
 df_all_ap['date'] = pd.to_datetime(df_all_ap['date'])
 df_region_ap['date'] = pd.to_datetime(df_region_ap['date'])
 df_age_ap['date'] = pd.to_datetime(df_age_ap['date'])
-
-
 df_all_ad['date'] = pd.to_datetime(df_all_ad['date'])
 df_region_ad['date'] = pd.to_datetime(df_region_ad['date'])
 df_age_ad['date'] = pd.to_datetime(df_age_ad['date'])
+
+df_all_ap_new['date'] = pd.to_datetime(df_all_ap_new['date'])
+df_region_ap_new['date'] = pd.to_datetime(df_region_ap_new['date'])
+df_age_ap_new['date'] = pd.to_datetime(df_age_ap_new['date'])
+df_all_ad_new['date'] = pd.to_datetime(df_all_ad_new['date'])
+df_region_ad_new['date'] = pd.to_datetime(df_region_ad_new['date'])
+df_age_ad_new['date'] = pd.to_datetime(df_age_ad_new['date'])
 
 
 # Plotly figure 1
@@ -101,3 +113,54 @@ fig6 = px.line(df_all_ap, x='date', y='value',
 fig6.update_layout(title='Antipsychotic Prescribing, Care Home Type' , showlegend=True)
 fig6.update_yaxes(tickformat = ',.0%')
 fig6.write_html("output/carehome_ap.html")
+
+
+
+# Plotly figure 7
+fig7 = px.line(df_region_ad_new, x='date', y='value',
+              color="region",
+              line_group="region", hover_name="region")
+fig7.update_layout(title='Antidepressent New, Region' , showlegend=True)
+fig7.update_yaxes(tickformat = ',.0%')
+fig7.write_html("output/region_ad_new.html")
+
+# Plotly figure 8
+fig8 = px.line(df_age_ad_new, x='date', y='value',
+              color="ageband_narrow",
+              line_group="ageband_narrow", hover_name="ageband_narrow")
+fig8.update_layout(title='Antidepressent New, Age' , showlegend=True)
+fig8.update_yaxes(tickformat = ',.0%')
+fig8.write_html("output/age_ad_new.html")
+
+# Plotly figure 9
+fig9 = px.line(df_all_ad_new, x='date', y='value',
+              color="care_home_type",
+              line_group="care_home_type", hover_name="care_home_type")
+fig9.update_layout(title='Antidepressent New, Care Home Type' , showlegend=True)
+fig9.update_yaxes(tickformat = ',.0%')
+fig9.write_html("output/carehome_ad_new.html")
+
+
+# Plotly figure 10
+fig10 = px.line(df_region_ap_new, x='date', y='value',
+              color="region",
+              line_group="region", hover_name="region")
+fig10.update_layout(title='Antipsychotic New, Region' , showlegend=True)
+fig10.update_yaxes(tickformat = ',.0%')
+fig10.write_html("output/region_ap_new.html")
+
+# Plotly figure 11
+fig11 = px.line(df_age_ap_new, x='date', y='value',
+              color="ageband_narrow",
+              line_group="ageband_narrow", hover_name="ageband_narrow")
+fig11.update_layout(title='Antipsychotic New, Age' , showlegend=True)
+fig11.update_yaxes(tickformat = ',.0%')
+fig11.write_html("output/age_ap_new.html")
+
+# Plotly figure 12
+fig12 = px.line(df_all_ap_new, x='date', y='value',
+              color="care_home_type",
+              line_group="care_home_type", hover_name="care_home_type")
+fig12.update_layout(title='Antipsychotic New, Care Home Type' , showlegend=True)
+fig12.update_yaxes(tickformat = ',.0%')
+fig12.write_html("output/carehome_ap_new.html")

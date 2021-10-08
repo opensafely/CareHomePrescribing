@@ -97,6 +97,12 @@ study = StudyDefinition(
       between = ["index_date - 12 months", "index_date - 3 months"],
       return_expectations = {"incidence": 0.2}
     ),           
+
+    ap_new_initiation=patients.satisfying(
+        """
+        antipsychotics_prescribing = 1 AND antipsychotics_prescribing_previous = 0 
+        """
+    ),   
     
         # DEMOGRAPHICS  
     ## age 
@@ -225,6 +231,26 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["region"],
-    )
-    
+    ),
+    # antipsychotic new
+    Measure(
+        id="ap_prescribing_new_all",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["care_home_type"],
+    ),
+    # antipsychotic new age
+    Measure(
+        id="ap_prescribing_new_age",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["ageband_narrow"],
+    ),
+    # antipsychotic new region
+    Measure(
+        id="ap_prescribing_new_region",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["region"],
+    )    
     ]

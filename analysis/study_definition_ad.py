@@ -64,7 +64,7 @@ study = StudyDefinition(
             "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
         },
     ),
-    
+   
         ### testing positive (SGSS or primary care)
     first_pos_test_sgss=patients.with_test_result_in_sgss(
        pathogen="SARS-CoV-2",
@@ -83,20 +83,29 @@ study = StudyDefinition(
         return_expectations = {"incidence": 0.02}
    ),
 
-    
+  
+ 
     antidepressent_ssri = patients.with_these_medications(
       antidepressent_ssri_codes,
       returning = "binary_flag",
       between = ["index_date - 3 months", "index_date"],
       return_expectations = {"incidence": 0.2}
-    ),    
-    
+    ),  
+
     antidepressent_ssri_previous = patients.with_these_medications(
       antidepressent_ssri_codes,
       returning = "binary_flag",
       between = ["index_date - 12 months", "index_date - 3 months"],
       return_expectations = {"incidence": 0.2}
-    ),       
+    ),          
+
+    ad_new_initiation=patients.satisfying(
+        """
+        antidepressent_ssri = 1 AND antidepressent_ssri_previous = 0 
+        """
+    ),   
+
+    
     
         # DEMOGRAPHICS  
     ## age 
@@ -223,6 +232,28 @@ measures = [
     Measure(
         id="ad_prescribing_rate_region",
         numerator="antidepressent_ssri",
+        denominator="population",
+        group_by = ["region"],
+    ),
+
+    # antidepressent new
+    Measure(
+        id="ad_prescribing_new_all",
+        numerator="ad_new_initiation",
+        denominator="population",
+        group_by = ["care_home_type"],
+    ),
+    # antidepressent new age
+    Measure(
+        id="ad_prescribing_new_age",
+        numerator="ad_new_initiation",
+        denominator="population",
+        group_by = ["ageband_narrow"],
+    ),
+    # antidepressent new region
+    Measure(
+        id="ad_prescribing_new_region",
+        numerator="ad_new_initiation",
         denominator="population",
         group_by = ["region"],
     )

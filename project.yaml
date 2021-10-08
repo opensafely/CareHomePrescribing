@@ -47,9 +47,9 @@ actions:
           measure_csv: output/measure_ap_*.csv
         
   describe:
-    run: python:latest python analysis/descriptives.py
+    run: python:latest python analysis/descriptives.py --output-dir=output
     needs: [generate_measures_ad, generate_measures_ap]
     outputs:
       moderately_sensitive:
         cohort: output/*.html
-        tables: output/*.csv
+ #       describe_csv: output/descriptives/*.csv
