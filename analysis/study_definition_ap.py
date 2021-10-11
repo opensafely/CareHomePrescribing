@@ -217,6 +217,7 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["care_home_type"],
+        small_number_suppression=True
     ),
     # antipsychotic age
     Measure(
@@ -224,6 +225,7 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["ageband_narrow"],
+        small_number_suppression=True
     ),
     # antipsychotic region
     Measure(
@@ -231,6 +233,7 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["region"],
+        small_number_suppression=True
     ),
     # antipsychotic new
     Measure(
@@ -238,6 +241,7 @@ measures = [
         numerator="ap_new_initiation",
         denominator="population",
         group_by = ["care_home_type"],
+        small_number_suppression=True
     ),
     # antipsychotic new age
     Measure(
@@ -245,6 +249,7 @@ measures = [
         numerator="ap_new_initiation",
         denominator="population",
         group_by = ["ageband_narrow"],
+        small_number_suppression=True
     ),
     # antipsychotic new region
     Measure(
@@ -252,5 +257,6 @@ measures = [
         numerator="ap_new_initiation",
         denominator="population",
         group_by = ["region"],
+        small_number_suppression=True
     )    
     ]

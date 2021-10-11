@@ -220,6 +220,7 @@ measures = [
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["care_home_type"],
+        small_number_suppression=True
     ),
     # antidepressent age
     Measure(
@@ -227,6 +228,7 @@ measures = [
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["ageband_narrow"],
+        small_number_suppression=True
     ),
     # antidepressent region
     Measure(
@@ -234,6 +236,7 @@ measures = [
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["region"],
+        small_number_suppression=True
     ),
 
     # antidepressent new
@@ -242,6 +245,7 @@ measures = [
         numerator="ad_new_initiation",
         denominator="population",
         group_by = ["care_home_type"],
+        small_number_suppression=True
     ),
     # antidepressent new age
     Measure(
@@ -249,6 +253,7 @@ measures = [
         numerator="ad_new_initiation",
         denominator="population",
         group_by = ["ageband_narrow"],
+        small_number_suppression=True
     ),
     # antidepressent new region
     Measure(
@@ -256,6 +261,7 @@ measures = [
         numerator="ad_new_initiation",
         denominator="population",
         group_by = ["region"],
+        small_number_suppression=True
     )
     
     ]
