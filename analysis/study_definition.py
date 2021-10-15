@@ -105,7 +105,25 @@ study = StudyDefinition(
         """
     ),   
 
+    antipsychotics_prescribing  = patients.with_these_medications(
+      antipsychotics_sec_gen,
+      returning = "binary_flag",
+      between = ["index_date - 3 months", "index_date"],
+      return_expectations = {"incidence": 0.2}
+    ),    
     
+    antipsychotics_prescribing_previous  = patients.with_these_medications(
+      antipsychotics_sec_gen,
+      returning = "binary_flag",
+      between = ["index_date - 12 months", "index_date - 3 months"],
+      return_expectations = {"incidence": 0.2}
+    ),           
+
+    ap_new_initiation=patients.satisfying(
+        """
+        antipsychotics_prescribing = 1 AND antipsychotics_prescribing_previous = 0 
+        """
+    ),       
     
         # DEMOGRAPHICS  
     ## age 
@@ -262,6 +280,53 @@ measures = [
         denominator="population",
         group_by = ["region"],
         small_number_suppression=True
-    )
-    
+    ),
+    # antipsychotic
+    Measure(
+        id="ap_prescribing_rate_all",
+        numerator="antipsychotics_prescribing",
+        denominator="population",
+        group_by = ["care_home_type"],
+        small_number_suppression=True
+    ),
+    # antipsychotic age
+    Measure(
+        id="ap_prescribing_rate_age",
+        numerator="antipsychotics_prescribing",
+        denominator="population",
+        group_by = ["ageband_narrow"],
+        small_number_suppression=True
+    ),
+    # antipsychotic region
+    Measure(
+        id="ap_prescribing_rate_region",
+        numerator="antipsychotics_prescribing",
+        denominator="population",
+        group_by = ["region"],
+        small_number_suppression=True
+    ),
+    # antipsychotic new
+    Measure(
+        id="ap_prescribing_new_all",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["care_home_type"],
+        small_number_suppression=True
+    ),
+    # antipsychotic new age
+    Measure(
+        id="ap_prescribing_new_age",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["ageband_narrow"],
+        small_number_suppression=True
+    ),
+    # antipsychotic new region
+    Measure(
+        id="ap_prescribing_new_region",
+        numerator="ap_new_initiation",
+        denominator="population",
+        group_by = ["region"],
+        small_number_suppression=True
+    )       
     ]
