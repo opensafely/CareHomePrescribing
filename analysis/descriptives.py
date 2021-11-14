@@ -45,6 +45,9 @@ for key in file_dict.keys():
 
 
 
+
+
+
 df_all_ap = pd.read_csv("output/inputs/measure_ap_prescribing_rate_all.csv").dropna()
 df_all_ad = pd.read_csv("output/inputs/measure_ad_prescribing_rate_all.csv").dropna()
 df_region_ap = pd.read_csv("output/inputs/measure_ap_prescribing_rate_region.csv").dropna()
@@ -306,44 +309,57 @@ fig24.update_yaxes(tickformat = ',.0%')
 # fig12.write_html("output/control_carehome_ap_new.html")
 
 
-figfinal = make_subplots(rows=12, cols=2,subplot_titles=('Antidepressent Prescribing, Region','Antidepressent Prescribing, Age','Antidepressent Prescribing, Care Home Type','Antipsychotic Prescribing, Region','Antipsychotic Prescribing, Age','Antipsychotic Prescribing, Care Home Type','Antidepressent New, Region','Antidepressent New, Age','Antidepressent New, Care Home Type','Antipsychotic New, Region','Antipsychotic New, Age','Antipsychotic New, Care Home Type','Control Antidepressent Prescribing, Region','Control Antidepressent Prescribing, Age','Control Antidepressent Prescribing, Care Home Type','Control Antipsychotic Prescribing, Region','Control Antipsychotic Prescribing, Age','Control Antipsychotic Prescribing, Care Home Type','Control Antidepressent New, Region','Control Antidepressent New, Age','Control Antidepressent New, Care Home Type','Control Antipsychotic New, Region','Control Antipsychotic New, Age','Control Antipsychotic New, Care Home Type'))
+figfinal = make_subplots(rows=12, cols=2,subplot_titles=(
+'Antidepressent Prescribing,Region','Control Antidepressent Prescribing, Region',
+'Antidepressent Prescribing, Age','Control Antidepressent Prescribing, Age',
+'Antidepressent Prescribing, Care Home Type','Control Antidepressent Prescribing, Care Home Type',
+'Antipsychotic Prescribing, Region','Control Antipsychotic Prescribing, Region',
+'Antipsychotic Prescribing, Age','Control Antipsychotic Prescribing, Age',
+'Antipsychotic Prescribing, Care Home Type','Control Antipsychotic Prescribing, Care Home Type',
+'Antidepressent New, Region','Control Antidepressent New, Region',
+'Antidepressent New, Age','Control Antidepressent New, Age',
+'Antidepressent New, Care Home Type','Control Antidepressent New, Care Home Type',
+'Antipsychotic New, Region','Control Antipsychotic New, Region',
+'Antipsychotic New, Age','Control Antipsychotic New, Age',
+'Antipsychotic New, Care Home Type','Control Antipsychotic New, Care Home Type'
+))
 
 
 for d in fig1.data:
     figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=1, col=1)
         
 for d in fig2.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=2, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=2, col=1)
     
 for d in fig3.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=3, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=3, col=1)
     
 for d in fig4.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=4, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=4, col=1)
     
 for d in fig5.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=5, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=5, col=1)
     
 for d in fig6.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=6, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=6, col=1)
     
 for d in fig7.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=7, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=7, col=1)
     
 for d in fig8.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=8, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=8, col=1)
     
 for d in fig9.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=9, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=9, col=1)
     
 for d in fig10.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=10, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=10, col=1)
     
 for d in fig11.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=11, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=11, col=1)
     
 for d in fig12.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=12, col=1)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=12, col=1)
     
     
     
@@ -351,37 +367,37 @@ for d in fig13.data:
     figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=1, col=2)
         
 for d in fig14.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=2, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=2, col=2)
     
 for d in fig15.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=3, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=3, col=2)
     
 for d in fig16.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=4, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=4, col=2)
     
 for d in fig17.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=5, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=5, col=2)
     
 for d in fig18.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=6, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=6, col=2)
     
 for d in fig19.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=7, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=7, col=2)
     
 for d in fig20.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=8, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=8, col=2)
     
 for d in fig21.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=9, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=9, col=2)
     
 for d in fig22.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=10, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=10, col=2)
     
 for d in fig23.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=11, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=11, col=2)
     
 for d in fig24.data:
-    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'],  name = d['name'])), row=12, col=2)
+    figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=12, col=2)
 
-    
+figfinal.update_layout(height=8000, width=2000)
 figfinal.write_html("output/graphs/figfinal.html")
