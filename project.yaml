@@ -13,10 +13,10 @@ actions:
         cohort: output/inputs/input_*.csv
 
   generate_study_population_control:
-    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-03-01 by month" --study-definition study_definition_control --output-dir=output/inputs
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-03-01 by month" --study-definition study_definition_control --output-dir=output/control
     outputs:
       highly_sensitive:
-        cohort: output/inputs/input_control_*.csv
+        cohort: output/control/input_control_*.csv
         
         
   generate_study_population_ethnicity:
@@ -27,24 +27,32 @@ actions:
 
   join_ethnicity:
     run: python:latest python analysis/join_ethnicity.py    
-    needs: [generate_study_population, generate_study_population_control, generate_study_population_ethnicity]
+    needs: [generate_study_population, generate_study_population_ethnicity]
     outputs:
       highly_sensitive:
         cohort: output/inputs/input*.csv
+
+
+  join_ethnicity_control:
+    run: python:latest python analysis/join_ethnicity_control.py    
+    needs: [generate_study_population_control, generate_study_population_ethnicity]
+    outputs:
+      highly_sensitive:
+        cohort: output/control/input*.csv
         
           # Generate measures
           
   generate_measures_control:
-      run: cohortextractor:latest generate_measures --study-definition study_definition_control --output-dir=output/inputs
-      needs: [join_ethnicity]
+      run: cohortextractor:latest generate_measures --study-definition study_definition_control --output-dir=output/control
+      needs: [join_ethnicity_control]
       outputs:
         moderately_sensitive:
-          measure_csv: output/inputs/measure_control_*.csv
+          measure_csv: output/control/measure_control_*.csv
 
 
   generate_measures:
       run: cohortextractor:latest generate_measures --study-definition study_definition --output-dir=output/inputs
-      needs: [join_ethnicity,generate_measures_control]
+      needs: [join_ethnicity]
       outputs:
         moderately_sensitive:
           measure_csv: output/inputs/measure_a*.csv
