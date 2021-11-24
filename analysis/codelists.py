@@ -29,3 +29,15 @@ structured_medicine_review = codelist_from_csv(
   system = "snomed",
   column = "code",
 )
+
+nhse_care_home_des_codes = codelist_from_csv(
+    "codelists/opensafely-nhs-england-care-homes-residential-status-ctv3.csv", 
+    system="ctv3", 
+    column="code",
+)
+
+primis_codes = codelist_from_csv(
+    "codelists/primis-covid19-vacc-uptake-longres.csv", 
+    system="snomed", 
+    column="code",
+)

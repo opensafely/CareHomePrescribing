@@ -26,18 +26,33 @@ study = StudyDefinition(
     },
     # select the study population
     index_date="2020-01-01",
-    
+
+
     population=patients.satisfying(
         """
         (age >= 65 AND age < 120) AND 
         is_registered_with_tpp AND 
         (sex = "M" OR sex = "F") AND 
-        (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS") 
+        primis_carehome_pastyear = 1
         """,
         is_registered_with_tpp=patients.registered_as_of(
           "index_date"
         ),
     ),
+
+
+    
+    # population=patients.satisfying(
+        # """
+        # (age >= 65 AND age < 120) AND 
+        # is_registered_with_tpp AND 
+        # (sex = "M" OR sex = "F") AND 
+        # (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS") 
+        # """,
+        # is_registered_with_tpp=patients.registered_as_of(
+          # "index_date"
+        # ),
+    # ),
     
 
     
@@ -64,6 +79,15 @@ study = StudyDefinition(
             "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
         },
     ),
+
+    #primis codes within past year 
+    primis_carehome_pastyear=patients.with_these_clinical_events(
+        primis_codes,
+        between=["index_date - 1 year", "index_date"], 
+        returning="binary_flag",
+        return_expectations={"incidence": 0.1},
+    ),
+
    
         ### testing positive (SGSS or primary care)
     first_pos_test_sgss=patients.with_test_result_in_sgss(
@@ -237,7 +261,7 @@ measures = [
         id="ad_prescribing_rate_all",
         numerator="antidepressent_ssri",
         denominator="population",
-        group_by = ["care_home_type"],
+        group_by = ["primis_carehome_pastyear"],
         small_number_suppression=True
     ),
     # antidepressent age
@@ -262,7 +286,7 @@ measures = [
         id="ad_prescribing_new_all",
         numerator="ad_new_initiation",
         denominator="population",
-        group_by = ["care_home_type"],
+        group_by = ["primis_carehome_pastyear"],
         small_number_suppression=True
     ),
     # antidepressent new age
@@ -286,7 +310,7 @@ measures = [
         id="ap_prescribing_rate_all",
         numerator="antipsychotics_prescribing",
         denominator="population",
-        group_by = ["care_home_type"],
+        group_by = ["primis_carehome_pastyear"],
         small_number_suppression=True
     ),
     # antipsychotic age
@@ -310,7 +334,7 @@ measures = [
         id="ap_prescribing_new_all",
         numerator="ap_new_initiation",
         denominator="population",
-        group_by = ["care_home_type"],
+        group_by = ["primis_carehome_pastyear"],
         small_number_suppression=True
     ),
     # antipsychotic new age

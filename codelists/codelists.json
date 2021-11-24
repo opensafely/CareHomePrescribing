@@ -47,6 +47,18 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11/",
       "downloaded_at": "2021-09-17 12:06:57.592981Z",
       "sha": "2330a3239958a1e120352e26fa7126e71d5dfdba"
+    },
+    "opensafely-nhs-england-care-homes-residential-status-ctv3.csv": {
+      "id": "opensafely/nhs-england-care-homes-residential-status-ctv3/1e037bde",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/nhs-england-care-homes-residential-status-ctv3/1e037bde/",
+      "downloaded_at": "2021-11-24 10:45:26.369328Z",
+      "sha": "102f795e818a1886b128aa75da265378e1d16fba"
+    },
+    "primis-covid19-vacc-uptake-longres.csv": {
+      "id": "primis-covid19-vacc-uptake/longres/v1",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/longres/v1/",
+      "downloaded_at": "2021-11-24 10:52:19.136102Z",
+      "sha": "4d4c94b9c6aa267c6a60657150bbc5ec7d2d7625"
     }
   }
 }

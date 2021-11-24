@@ -123,8 +123,8 @@ fig2.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 3
 fig3 = px.line(df_all_ad, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig3.update_layout(title='Antidepressent Prescribing, Care Home Type' , showlegend=True)
 fig3.update_yaxes(tickformat = ',.0%')
 # fig3.write_html("output/graphs/carehome_ad.html", include_plotlyjs="cdn")
@@ -148,8 +148,8 @@ fig5.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 6
 fig6 = px.line(df_all_ap, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig6.update_layout(title='Antipsychotic Prescribing, Care Home Type' , showlegend=True)
 fig6.update_yaxes(tickformat = ',.0%')
 # fig6.write_html("output/graphs/carehome_ap.html", include_plotlyjs="cdn")
@@ -174,8 +174,8 @@ fig8.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 9
 fig9 = px.line(df_all_ad_new, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig9.update_layout(title='Antidepressent New, Care Home Type' , showlegend=True)
 fig9.update_yaxes(tickformat = ',.0%')
 # fig9.write_html("output/graphs/carehome_ad_new.html", include_plotlyjs="cdn")
@@ -199,8 +199,8 @@ fig11.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 12
 fig12 = px.line(df_all_ap_new, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig12.update_layout(title='Antipsychotic New, Care Home Type' , showlegend=True)
 fig12.update_yaxes(tickformat = ',.0%')
 # fig12.write_html("output/graphs/carehome_ap_new.html", include_plotlyjs="cdn")
@@ -226,8 +226,8 @@ fig14.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 3
 fig15 = px.line(df_all_ad_control, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig15.update_layout(title='Control Antidepressent Prescribing, Care Home Type' , showlegend=True)
 fig15.update_yaxes(tickformat = ',.0%')
 # fig15.write_html("output/control_carehome_ad.html")
@@ -251,8 +251,8 @@ fig17.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 6
 fig18 = px.line(df_all_ap_control, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig18.update_layout(title='Control Antipsychotic Prescribing, Care Home Type' , showlegend=True)
 fig18.update_yaxes(tickformat = ',.0%')
 # fig18.write_html("output/control_carehome_ap.html")
@@ -277,8 +277,8 @@ fig20.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 9
 fig21 = px.line(df_all_ad_new_control, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig21.update_layout(title='Control Antidepressent New, Care Home Type' , showlegend=True)
 fig21.update_yaxes(tickformat = ',.0%')
 # fig21.write_html("output/control_carehome_ad_new.html")
@@ -302,8 +302,8 @@ fig23.update_yaxes(tickformat = ',.0%')
 
 # Plotly figure 12
 fig24 = px.line(df_all_ap_new_control, x='date', y='value',
-              color="care_home_type",
-              line_group="care_home_type", hover_name="care_home_type")
+              color="primis_carehome_pastyear",
+              line_group="primis_carehome_pastyear", hover_name="primis_carehome_pastyear")
 fig24.update_layout(title='Control Antipsychotic New, Care Home Type' , showlegend=True)
 fig24.update_yaxes(tickformat = ',.0%')
 # fig12.write_html("output/control_carehome_ap_new.html")
