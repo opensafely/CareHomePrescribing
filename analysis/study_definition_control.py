@@ -56,18 +56,18 @@ study = StudyDefinition(
 
     
     # HOUSEHOLD INFORMATION
-    ## care home status 
-    care_home_type=patients.care_home_status_as_of(
-        "index_date",
-        categorised_as={
-            "NC": "NOT IsPotentialCareHome",
-            "U": "DEFAULT",
-        },
-        return_expectations={
-            "rate": "universal",
-            "category": {"ratios": {"NC": 0.9, "U":0.1},},
-        },
-    ),
+    ## care home status     # care_home_type=patients.care_home_status_as_of(
+        # "index_date",
+        # categorised_as={
+            # "NC": "NOT IsPotentialCareHome",
+            # "U": "DEFAULT",
+        # },
+        # return_expectations={
+            # "rate": "universal",
+            # "category": {"ratios": {"NC": 0.9, "U":0.1},},
+        # },
+    # ),
+
     #primis codes within past year 
     primis_carehome_pastyear=patients.with_these_clinical_events(
         primis_codes,

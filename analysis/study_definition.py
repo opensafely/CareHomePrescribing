@@ -58,27 +58,27 @@ study = StudyDefinition(
     
     # HOUSEHOLD INFORMATION
     ## care home status 
-    care_home_type=patients.care_home_status_as_of(
-        "index_date",
-        categorised_as={
-            "PC": """
-              IsPotentialCareHome
-              AND LocationDoesNotRequireNursing='Y'
-              AND LocationRequiresNursing='N'
-            """,
-            "PN": """
-              IsPotentialCareHome
-              AND LocationDoesNotRequireNursing='N'
-              AND LocationRequiresNursing='Y'
-            """,
-            "PS": "IsPotentialCareHome",
-            "U": "DEFAULT",
-        },
-        return_expectations={
-            "rate": "universal",
-            "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
-        },
-    ),
+    # care_home_type=patients.care_home_status_as_of(
+        # "index_date",
+        # categorised_as={
+            # "PC": """
+              # IsPotentialCareHome
+              # AND LocationDoesNotRequireNursing='Y'
+              # AND LocationRequiresNursing='N'
+            # """,
+            # "PN": """
+              # IsPotentialCareHome
+              # AND LocationDoesNotRequireNursing='N'
+              # AND LocationRequiresNursing='Y'
+            # """,
+            # "PS": "IsPotentialCareHome",
+            # "U": "DEFAULT",
+        # },
+        # return_expectations={
+            # "rate": "universal",
+            # "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
+        # },
+    # ),
 
     #primis codes within past year 
     primis_carehome_pastyear=patients.with_these_clinical_events(
