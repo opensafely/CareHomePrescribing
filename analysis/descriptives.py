@@ -40,7 +40,7 @@ for file in file_list:
         file_dict[key] = df_input
 
 for key in file_dict.keys():
-    file_dict[key]['region'].to_csv('output/descriptives/descriptive_statistics_'+str(key.split('/')[2])+'.csv')
+    file_dict[key].to_csv('output/descriptives/descriptive_statistics_'+str(key.split('/')[2])+'.csv')
 
 
 
