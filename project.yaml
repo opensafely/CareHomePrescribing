@@ -7,13 +7,13 @@ actions:
 
 
   generate_study_population:
-    run: cohortextractor:latest generate_cohort --index-date-range "2020-05-01 to 2020-12-01 by month" --study-definition study_definition --output-dir=output/inputs
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-03-01 to 2021-3-01 by month" --study-definition study_definition --output-dir=output/inputs
     outputs:
       highly_sensitive:
         cohort: output/inputs/input_*.csv
 
   generate_study_population_control:
-    run: cohortextractor:latest generate_cohort --index-date-range "2020-05-01 to 2020-12-01 by month" --study-definition study_definition_control --output-dir=output/control
+    run: cohortextractor:latest generate_cohort --index-date-range "2019-3-01 to 2021-3-01 by month" --study-definition study_definition_control --output-dir=output/control
     outputs:
       highly_sensitive:
         cohort: output/control/input_control_*.csv

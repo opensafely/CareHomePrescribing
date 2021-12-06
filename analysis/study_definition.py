@@ -28,57 +28,57 @@ study = StudyDefinition(
     index_date="2020-01-01",
 
 
-    population=patients.satisfying(
-        """
-        (age >= 65 AND age < 120) AND 
-        is_registered_with_tpp AND 
-        (sex = "M" OR sex = "F") AND 
-        primis_carehome_pastyear = 1
-        """,
-        is_registered_with_tpp=patients.registered_as_of(
-          "index_date"
-        ),
-    ),
-
-
-    
     # population=patients.satisfying(
         # """
         # (age >= 65 AND age < 120) AND 
         # is_registered_with_tpp AND 
         # (sex = "M" OR sex = "F") AND 
-        # (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS") 
+        # primis_carehome_pastyear = 1
         # """,
         # is_registered_with_tpp=patients.registered_as_of(
           # "index_date"
         # ),
     # ),
+
+
+    
+     population=patients.satisfying(
+        """
+        (age >= 65 AND age < 120) AND 
+        is_registered_with_tpp AND 
+        (sex = "M" OR sex = "F") AND 
+        (care_home_type = "PC" OR care_home_type = "PN" OR care_home_type = "PS") 
+        """,
+        is_registered_with_tpp=patients.registered_as_of(
+          "index_date"
+        ),
+    ),
     
 
     
     # HOUSEHOLD INFORMATION
     ## care home status 
-    # care_home_type=patients.care_home_status_as_of(
-        # "index_date",
-        # categorised_as={
-            # "PC": """
-              # IsPotentialCareHome
-              # AND LocationDoesNotRequireNursing='Y'
-              # AND LocationRequiresNursing='N'
-            # """,
-            # "PN": """
-              # IsPotentialCareHome
-              # AND LocationDoesNotRequireNursing='N'
-              # AND LocationRequiresNursing='Y'
-            # """,
-            # "PS": "IsPotentialCareHome",
-            # "U": "DEFAULT",
-        # },
-        # return_expectations={
-            # "rate": "universal",
-            # "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
-        # },
-    # ),
+    care_home_type=patients.care_home_status_as_of(
+        "index_date",
+        categorised_as={
+            "PC": """
+              IsPotentialCareHome
+              AND LocationDoesNotRequireNursing='Y'
+              AND LocationRequiresNursing='N'
+            """,
+            "PN": """
+              IsPotentialCareHome
+              AND LocationDoesNotRequireNursing='N'
+              AND LocationRequiresNursing='Y'
+            """,
+            "PS": "IsPotentialCareHome",
+            "U": "DEFAULT",
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {"ratios": {"PC": 0.30, "PN": 0.10, "PS": 0.10, "U":0.5},},
+        },
+    ),
 
     #primis codes within past year 
     primis_carehome_pastyear=patients.with_these_clinical_events(
@@ -261,8 +261,8 @@ measures = [
         id="ad_prescribing_rate_all",
         numerator="antidepressent_ssri",
         denominator="population",
-        group_by = ["primis_carehome_pastyear"],
-        small_number_suppression=True
+        group_by = ["care_home_type"],
+        # small_number_suppression=True
     ),
     # antidepressent age
     Measure(
@@ -270,7 +270,7 @@ measures = [
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["ageband_narrow"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antidepressent region
     Measure(
@@ -278,7 +278,7 @@ measures = [
         numerator="antidepressent_ssri",
         denominator="population",
         group_by = ["region"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
 
     # antidepressent new
@@ -286,8 +286,8 @@ measures = [
         id="ad_prescribing_new_all",
         numerator="ad_new_initiation",
         denominator="population",
-        group_by = ["primis_carehome_pastyear"],
-        small_number_suppression=True
+        group_by = ["care_home_type"],
+        # small_number_suppression=True
     ),
     # antidepressent new age
     Measure(
@@ -295,7 +295,7 @@ measures = [
         numerator="ad_new_initiation",
         denominator="population",
         group_by = ["ageband_narrow"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antidepressent new region
     Measure(
@@ -303,15 +303,15 @@ measures = [
         numerator="ad_new_initiation",
         denominator="population",
         group_by = ["region"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antipsychotic
     Measure(
         id="ap_prescribing_rate_all",
         numerator="antipsychotics_prescribing",
         denominator="population",
-        group_by = ["primis_carehome_pastyear"],
-        small_number_suppression=True
+        group_by = ["care_home_type"],
+        # small_number_suppression=True
     ),
     # antipsychotic age
     Measure(
@@ -319,7 +319,7 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["ageband_narrow"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antipsychotic region
     Measure(
@@ -327,15 +327,15 @@ measures = [
         numerator="antipsychotics_prescribing",
         denominator="population",
         group_by = ["region"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antipsychotic new
     Measure(
         id="ap_prescribing_new_all",
         numerator="ap_new_initiation",
         denominator="population",
-        group_by = ["primis_carehome_pastyear"],
-        small_number_suppression=True
+        group_by = ["care_home_type"],
+        # small_number_suppression=True
     ),
     # antipsychotic new age
     Measure(
@@ -343,7 +343,7 @@ measures = [
         numerator="ap_new_initiation",
         denominator="population",
         group_by = ["ageband_narrow"],
-        small_number_suppression=True
+        # small_number_suppression=True
     ),
     # antipsychotic new region
     Measure(
@@ -351,6 +351,6 @@ measures = [
         numerator="ap_new_initiation",
         denominator="population",
         group_by = ["region"],
-        small_number_suppression=True
+        # small_number_suppression=True
     )       
     ]
