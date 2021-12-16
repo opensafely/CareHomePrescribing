@@ -105,12 +105,13 @@ df_all_ad_new_control['date'] = pd.to_datetime(df_all_ad_new_control['date'])
 df_region_ad_new_control['date'] = pd.to_datetime(df_region_ad_new_control['date'])
 df_age_ad_new_control['date'] = pd.to_datetime(df_age_ad_new_control['date'])
 
+
 # Plotly figure 1
 fig1 = px.line(df_region_ad, x='date', y='value',
               color="region",
               line_group="region", hover_name="region")
-fig1.update_layout(title='Antidepressent Prescribing, Region' , showlegend=True)
-fig1.update_yaxes(tickformat = ',.0%')
+fig1.update_layout(title='Antidepressent Prescribing, Region' , showlegend=True, yaxis_tickformat= ',.0%')
+#fig1.update_yaxes(tickformat = ',.0%')
 #fig1.write_html("output/graphs/region_ad.html", include_plotlyjs="cdn")
 
 # Plotly figure 2
@@ -400,4 +401,5 @@ for d in fig24.data:
     figfinal.add_trace((go.Scatter(x=d['x'], y=d['y'], name = d['name'])), row=12, col=2)
 
 figfinal.update_layout(height=8000, width=2000)
+figfinal.update_yaxes(tickformat = ',.1%')
 figfinal.write_html("output/graphs/figfinal.html")
